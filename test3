@@ -1,0 +1,62 @@
+let shoppingCart = []; 
+
+function createItem(name, price, quantity){
+    let item = {
+        "name": name, 
+        "price": price, 
+        "quantity": quantity, 
+    }
+    shoppingCart.push(item); 
+    return item;  
+}
+
+function deleteItem(name){
+    for (let i = 0; i < shoppingCart.length; i++){
+        if (shoppingCart[i].name === name){
+            shoppingCart.splice(i, 1);
+            return 
+        }
+    }
+}
+
+function getItem(name){
+    for (let i = 0; i < shoppingCart.length; i++){
+        if (shoppingCart[i].name === name){
+            return shoppingCart[i];
+        }
+    }
+}
+
+function editItem(name, newName, newPrice){
+    let newItem = getItem(name); 
+    if (newItem){
+        if (newName !== undefined) item.name = newName; 
+        if (newPrice !== undefined) item.price = newPrice;
+    } else {
+        return null 
+    }
+}
+
+function updateNewQuantity(name, newQuantity){
+    for (let i = 0; i < shoppingCart.length; i++){
+        if (shoppingCart[i].name === name){
+            shoppingCart[i].quantity = newQuantity;
+            return shoppingCart[i];
+        }
+    }
+    return null;
+}
+
+function getTotalCost(){
+    let total = 0; 
+    for (let i = 0; i < shoppingCart.length; i++){
+        total += shoppingCart[i].price * shoppingCart[i].quantity; 
+    }
+    return total;
+};
+
+createItem("yogurt", 89, 1);
+createItem("Americano", 100, 1);
+createItem("Crackers", 38, 2);
+
+console.log(shoppingCart);
